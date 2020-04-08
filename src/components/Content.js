@@ -1,7 +1,37 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/Content.css";
+import axios from "axios";
+
+const COVID_COUNTRY = "https://corona.lmao.ninja/countries?sort=country";
 
 function Content() {
+  const [covid, setCovid] = useState([]);
+  const [covidId, setCovidId] = useState([]);
+
+  const getCovidCountry = async () => {
+    await axios.get(COVID_COUNTRY).then((res) => {
+      const listDataCountry = res.data.reverse();
+      // const listDataCountry = listDataCountryX.reverse();
+      console.log(listDataCountry[93]);
+      setCovid(listDataCountry[93]);
+    });
+  };
+
+  const convertTime = (time) => {
+    let d = new Date(time);
+    let c = new Date();
+    let result = (d.getHours() < 10 ? "0" : "") + d.getHours() + ":";
+    result += (d.getMinutes() < 10 ? "0" : "") + d.getMinutes();
+    if (c.getDay() !== d.getDay()) {
+      result = d.getDay() + " " + d.getMonth() + " " + result;
+    }
+    return result;
+  };
+
+  useEffect(() => {
+    getCovidCountry();
+    // filterCountry();
+  }, []);
   return (
     <>
       <div class="grid-container">
@@ -12,24 +42,28 @@ function Content() {
               <div className="col-4">
                 <div className="cardhistory">
                   <div className="centeredpink">Cases</div>
-                  <div className="valueCases">2956</div>
+                  {console.log(covid)}
+                  <div className="valueCases">{covid.cases}</div>
                 </div>
               </div>
               <div className="col-4">
                 <div className="cardhistory">
                   <div className="centeredblue">Recovered</div>
-                  <div className="valueRecovered">222</div>
+                  <div className="valueRecovered">{covid.recovered}</div>
                 </div>
               </div>
               <div className="col-4">
                 <div className="cardhistory">
                   <div className="centeredviolet">Deaths</div>
-                  <div className="valueDeaths">240</div>
+                  <div className="valueDeaths">{covid.deaths}</div>
                 </div>
               </div>
             </div>
           </div>
-          <div className="dateupdate"> Date Update at 23:32</div>
+          <div className="dateupdate">
+            {" "}
+            Date Update at {convertTime(covid.updated)}
+          </div>
         </div>
         <div class="item2">
           <img src="https://lensajabar.com/wp-content/uploads/2020/04/ADS-Cimahi-2.jpg" />
