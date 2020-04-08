@@ -1,0 +1,9 @@
+.topBanner img {
+  padding-top: 2cm;
+  text-align: center;
+  display: block;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  /* width: 100%; */
+}
