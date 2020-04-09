@@ -20,7 +20,7 @@
   width: 100%;
   grid-area: content;
 }
-.content {
+.detail {
   width: 100%;
   height: auto;
   background-color: white;
@@ -28,39 +28,41 @@
   border-bottom: 2px solid #737373;
 }
 
-.content h4 {
+.detail h4 {
   color: #0033c1;
-  padding-top: 30px;
-  width: 65%;
-  padding-left: 5%;
+  padding-top: 10px;
+  width: 90%;
+  padding-left: 10%;
   text-align: left;
 }
 
-.content h5 {
+.detail h5 {
   color: #595959;
-  width: 55%;
-  padding-left: 5%;
+  width: 60%;
+  padding-left: 10%;
   text-align: left;
   font-size: 14px;
-  padding-bottom: 20px;
 }
 
-.content p {
-  padding-left: 5%;
-  width: 65%;
-  text-align: left;
+.detail p {
+  padding-top: 30px;
+  padding-left: 10%;
+  width: 90%;
+  text-align: justify;
   font-size: small;
 }
-.content a {
+.detail a {
   font-size: small;
 }
-.content img {
-  width: 220px;
-  height: 140px;
+.detail img {
+  width: 540px;
+  height: 300px;
   right: 0;
-  padding-right: 40px;
+  /* padding-left: 5%; */
+
   margin-top: 40px;
-  position: absolute;
+
+  /* position: absolute; */
   /* padding: 17px;
   right: 31%; */
 }
@@ -108,8 +110,6 @@
 }
 .slide h2 {
   /* position: absolute; */
-  cursor: pointer;
-  color: #0033c1;
   margin-top: 20px;
   font-size: 16px;
 }

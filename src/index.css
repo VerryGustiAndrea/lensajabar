@@ -5,12 +5,12 @@
   overflow: hidden;
   background-color: #333;
 }
-.topnav img {
+.logo {
   height: 45px;
   padding-left: 5%;
 }
 
-.topnav a {
+.topNavTitle {
   float: right;
   display: block;
   color: #f2f2f2;

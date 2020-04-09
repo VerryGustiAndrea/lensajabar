@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from "react";
-import "../styles/Content.css";
+import "../styles/Detail.css";
 import axios from "axios";
-import News from "./News";
+import Header from "./Header";
+import "../styles/Header.css";
 import SpaceRight from "./SpaceRight";
 import SpaceLeft from "./SpaceLeft";
 
 const COVID_COUNTRY = "https://corona.lmao.ninja/countries?sort=country";
 const GET_ALL_NEWS = "http://localhost:4000/api/news/getall";
 
-function Content() {
+function Detail(props) {
   const [covid, setCovid] = useState([]);
   const [allNews, setAllNews] = useState([]);
   const [slide1, setSlide1] = useState([]);
   const [slide2, setSlide2] = useState([]);
   const [slide3, setSlide3] = useState([]);
   const [slide4, setSlide4] = useState([]);
+  const [filter, setFilter] = useState([]);
+  const [timePost, setTimePost] = "";
 
   const getCovidCountry = async () => {
     await axios.get(COVID_COUNTRY).then((res) => {
@@ -30,6 +33,20 @@ function Content() {
       const listNews = res.data.reverse();
       // const listDataCountry = listDataCountryX.reverse();
       // console.log(listNews);
+      // let param = props.match.params.id.replace(/ /g, "-");
+
+      let dataFilter = listNews.filter((a) => {
+        return (
+          a.judul
+            .replace(/ /g, "-")
+            .toLowerCase()
+            .indexOf(props.match.params.id.toLowerCase()) !== -1
+        );
+      });
+      let dataFilterNew = dataFilter[0];
+      // console.log(dataFilter);
+      setFilter(dataFilterNew);
+
       setAllNews(listNews);
       setSlide1(listNews[0]);
       setSlide2(listNews[1]);
@@ -52,9 +69,12 @@ function Content() {
   useEffect(() => {
     getCovidCountry();
     getAllNews();
+    // filterNews(props.match.params.id);
   }, []);
   return (
     <>
+      <Header />
+      {console.log(filter.judul)}
       <div class="grid-container">
         <div class="item1">
           Data Covid-19 Di Indonesia
@@ -96,8 +116,7 @@ function Content() {
                 <h2
                   onClick={() => {
                     console.log(123);
-                    window.location.href =
-                      "detail/" + slide1.judul.replace(/ /g, "-");
+                    window.location.href = slide1.judul.replace(/ /g, "-");
                   }}
                 >
                   {slide1.judul}
@@ -110,8 +129,7 @@ function Content() {
                 <h2
                   onClick={() => {
                     console.log(123);
-                    window.location.href =
-                      "detail/" + slide2.judul.replace(/ /g, "-");
+                    window.location.href = slide2.judul.replace(/ /g, "-");
                   }}
                 >
                   {slide2.judul}
@@ -122,8 +140,7 @@ function Content() {
                 <h2
                   onClick={() => {
                     console.log(123);
-                    window.location.href =
-                      "detail/" + slide3.judul.replace(/ /g, "-");
+                    window.location.href = slide3.judul.replace(/ /g, "-");
                   }}
                 >
                   {slide3.judul}
@@ -134,8 +151,7 @@ function Content() {
                 <h2
                   onClick={() => {
                     console.log(123);
-                    window.location.href =
-                      "detail/" + slide4.judul.replace(/ /g, "-");
+                    window.location.href = slide4.judul.replace(/ /g, "-");
                   }}
                 >
                   {slide4.judul}
@@ -148,11 +164,17 @@ function Content() {
           <SpaceRight />
         </div>
         <div class="item5">
-          <News news={allNews} />
+          <div className="detail">
+            <h4 href="url">{filter.judul}</h4>
+            <h5>🕓 {filter.date}</h5>
+            <img src={filter.image} />
+            <p>{filter.content}</p>
+            <h5> Tags : {filter.tags}</h5>
+          </div>
         </div>
       </div>
     </>
   );
 }
 
-export default Content;
+export default Detail;

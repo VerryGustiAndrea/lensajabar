@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./components/App";
+import Detail from "./components/Detail";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
@@ -9,6 +10,8 @@ const AppWithRouter = () => {
   return (
     <Router>
       <Route path="/" exact component={App} /> {/*localhost:3000/*/}
+      <Route path="/detail/:id" exact component={Detail} />{" "}
+      {/*localhost:3000/*/}
     </Router>
   );
 };
