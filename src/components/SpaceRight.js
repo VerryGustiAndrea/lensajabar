@@ -9,6 +9,10 @@ const SpaceRight = () => {
       />
       <img
         className="spaceright"
+        src="https://lensajabar.com/wp-content/uploads/2020/04/ADS-Cimahi-2.jpg"
+      />
+      <img
+        className="spaceright"
         src=" https://lensajabar.com/wp-content/uploads/2019/02/Logo-yabasma.jpg"
       />
     </>

@@ -5,7 +5,7 @@ const SpaceLeft = () => {
     <>
       <img
         className="spaceleft"
-        src="https://lensajabar.com/wp-content/uploads/2020/04/ADS-Cimahi-2.jpg"
+        src="https://tpc.googlesyndication.com/daca_images/simgad/10598779639094739306"
       />
     </>
   );
